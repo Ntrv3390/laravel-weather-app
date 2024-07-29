@@ -7,4 +7,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('weather', [WeatherController::class, "index"]);
+Route::match(["get", "post"], 'weather', [WeatherController::class, "index"])->name("weather.form");

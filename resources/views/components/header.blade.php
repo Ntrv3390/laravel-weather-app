@@ -12,7 +12,7 @@
                     target="_blank"
                     rel="noreferrer"
                     >
-                    Github
+                    GitHub
                     </a>
                 </li>
                 <li class="nav-item">
@@ -22,7 +22,7 @@
                     target="_blank"
                     rel="noreferrer"
                     >
-                    LinkedIN
+                    LinkedIn
                     </a>
                 </li>
             </ul>

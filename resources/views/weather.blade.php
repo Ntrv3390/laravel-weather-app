@@ -11,7 +11,8 @@
         <div class="container">
             <h1 class="mt-5 mb-4">Weather Application</h1>
             <div class="input-group mb-3">
-                <form action="#" method="post" class="form-inline">
+                <form action="{{route('weather.form')}}" method="post" class="form-inline">
+                    @csrf
                     <div class="d-flex">
                         <div class="form-group">
                             <select class="form-select" name="city" id="city">
@@ -124,7 +125,13 @@
                         <div class="card-body">
                             <h5 class="card-title">Looks Like</h5>
                             <br>
-                            <b>--</b>
+                            <b>
+                                @if(isset($weatherData["weather"]['0']['description']))
+                                    {{$weatherData["weather"]['0']['description']}} 
+                                @else
+                                    --
+                                @endif
+                            </b>
                         </div>
                     </div>
                 </div>
@@ -133,12 +140,36 @@
                         <div class="card-body">
                             <h5 class="card-title">Location Details</h5>
                             <br>
-                            <p class="card-text">Country: <b>--</b></p>
-                            <p class="card-text">Name: <b>--</b></p>
-                            <p class="card-text">Latitude: <b>--</b></p>
-                            <p class="card-text">Longitude: <b>--</b></p>
-                            <p class="card-text">Sunrise: <b>--</b></p>
-                            <p class="card-text">Sunset: <b>--</b></p>
+                            <p class="card-text">Country: <b>@if(isset($weatherData["sys"]['country']))
+                                    {{$weatherData["sys"]['country']}} 
+                                @else
+                                    --
+                                @endif</b></p>
+                            <p class="card-text">Name: <b>@if(isset($weatherData["name"]))
+                                    {{$weatherData["name"]}} 
+                                @else
+                                    --
+                                @endif</b></p>
+                            <p class="card-text">Latitude: <b>@if(isset($weatherData["coord"]['lat']))
+                                    {{$weatherData["coord"]['lat']}} 
+                                @else
+                                    --
+                                @endif</b></p>
+                            <p class="card-text">Longitude: <b>@if(isset($weatherData["coord"]['lon']))
+                                    {{$weatherData["coord"]['lon']}} 
+                                @else
+                                    --
+                                @endif</b></p>
+                            <p class="card-text">Sunrise: <b>@if(isset($weatherData["sys"]['sunrise']))
+                                    {{$weatherData["sys"]['sunrise']}} 
+                                @else
+                                    --
+                                @endif</b></p>
+                            <p class="card-text">Sunset: <b>@if(isset($weatherData["sys"]['sunset']))
+                                    {{$weatherData["sys"]['sunset']}} 
+                                @else
+                                    --
+                                @endif</b></p>
                         </div>
                     </div>
                 </div>
@@ -147,10 +178,26 @@
                         <div class="card-body">
                             <h5 class="card-title">Temperature &deg; C | &deg; F</h5>
                             <br>
-                            <p class="card-text">Temp: <b>--</b></p>
-                            <p class="card-text">Min Temp: <b>--</b></p>
-                            <p class="card-text">Max Temp: <b>--</b></p>
-                            <p class="card-text">Feels Like: <b>--</b></p>
+                            <p class="card-text">Temp: <b>@if(isset($weatherData["main"]['temp']))
+                                    {{$weatherData["main"]['temp']}} 
+                                @else
+                                    --
+                                @endif</b></p>
+                            <p class="card-text">Min Temp: <b>@if(isset($weatherData["main"]['temp_min']))
+                                    {{$weatherData["main"]['temp_min']}} 
+                                @else
+                                    --
+                                @endif</b></p>
+                            <p class="card-text">Max Temp: <b>@if(isset($weatherData["main"]['temp_max']))
+                                    {{$weatherData["main"]['temp_max']}} 
+                                @else
+                                    --
+                                @endif</b></p>
+                            <p class="card-text">Feels Like: <b>@if(isset($weatherData["main"]['feels_like']))
+                                    {{$weatherData["main"]['feels_like']}} 
+                                @else
+                                    --
+                                @endif</b></p>
                         </div>
                     </div>
                 </div>
@@ -159,11 +206,31 @@
                         <div class="card-body">
                             <h5 class="card-title">Precipitation &percnt;</h5>
                             <br>
-                            <p class="card-text">Humidity: <b>--</b></p>
-                            <p class="card-text">Pressure: <b>--</b></p>
-                            <p class="card-text">Sea Level: <b>--</b></p>
-                            <p class="card-text">Ground Level: <b>--</b></p>
-                            <p class="card-text">Visibility: <b>--</b></p>
+                            <p class="card-text">Humidity: <b>@if(isset($weatherData["main"]['humidity']))
+                                    {{$weatherData["main"]['humidity']}} 
+                                @else
+                                    --
+                                @endif</b></p>
+                            <p class="card-text">Pressure: <b>@if(isset($weatherData["main"]['pressure']))
+                                    {{$weatherData["main"]['pressure']}} 
+                                @else
+                                    --
+                                @endif</b></p>
+                            <p class="card-text">Sea Level: <b>@if(isset($weatherData["main"]['sea_level']))
+                                    {{$weatherData["main"]['sea_level']}} 
+                                @else
+                                    --
+                                @endif</b></p>
+                            <p class="card-text">Ground Level: <b>@if(isset($weatherData["main"]['grnd_level']))
+                                    {{$weatherData["main"]['grnd_level']}} 
+                                @else
+                                    --
+                                @endif</b></p>
+                            <p class="card-text">Visibility: <b>@if(isset($weatherData["visibility"]))
+                                    {{$weatherData["visibility"]}} 
+                                @else
+                                    --
+                                @endif</b></p>
                         </div>
                     </div>
                 </div>
@@ -172,9 +239,21 @@
                         <div class="card-body">
                             <h5 class="card-title">Wind m/h</h5>
                             <br>
-                            <p class="card-text">Speed: <b>--</b></p>
-                            <p class="card-text">Degree: <b>--</b></p>
-                            <p class="card-text">Gust: <b>--</b></p>
+                            <p class="card-text">Speed: <b>@if(isset($weatherData["wind"]['speed']))
+                                    {{$weatherData["wind"]['speed']}} 
+                                @else
+                                    --
+                                @endif</b></p>
+                            <p class="card-text">Degree: <b>@if(isset($weatherData["wind"]['deg']))
+                                    {{$weatherData["wind"]['deg']}} 
+                                @else
+                                    --
+                                @endif</b></p>
+                            <p class="card-text">Gust: <b>@if(isset($weatherData["wind"]['gust']))
+                                    {{$weatherData["wind"]['gust']}} 
+                                @else
+                                    --
+                                @endif</b></p>
                         </div>
                     </div>
                 </div>
