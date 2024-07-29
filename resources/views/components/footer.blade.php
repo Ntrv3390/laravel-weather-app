@@ -3,3 +3,6 @@
         Made by Mohammed Puthawala
     </div>
 </footer>
+</body>
+
+</html>

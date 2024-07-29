@@ -8,9 +8,10 @@ use Illuminate\Support\Facades\Http;
 
 class WeatherController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $data = [];
-        if($request->isMethod("post")) {
+        if ($request->isMethod("post")) {
             $city = $request->city;
             $response = $this->getWeather($city);
             $data = $response->json();
@@ -19,7 +20,8 @@ class WeatherController extends Controller
             "weatherData" => $data
         ]);
     }
-    public function getWeather($city) {    
+    public function getWeather($city)
+    {
         $response = Http::withHeaders([
             "x-rapidapi-host" => "open-weather13.p.rapidapi.com",
             "x-rapidapi-key" => env('RAPID_WEATHER_API'),
