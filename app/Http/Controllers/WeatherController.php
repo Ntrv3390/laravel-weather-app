@@ -22,7 +22,7 @@ class WeatherController extends Controller
     public function getWeather($city) {    
         $response = Http::withHeaders([
             "x-rapidapi-host" => "open-weather13.p.rapidapi.com",
-            "x-rapidapi-key" => "ad5e422cdamsh863acd93735f694p1508aejsn00bf9cc59bd0",
+            "x-rapidapi-key" => env('RAPID_WEATHER_API'),
         ])->get("https://open-weather13.p.rapidapi.com/city/{$city}/in");
         return $response;
     }
